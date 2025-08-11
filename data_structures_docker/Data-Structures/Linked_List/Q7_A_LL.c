@@ -85,21 +85,30 @@ int main()
 
 ////////////////////////////////////////////////////////////////////////
 
-void RecursiveReverse(ListNode **ptrHead)
+void RecursiveReverse(ListNode **ptrHead)     // 수정불가
 {
-	 ListNode *cur = *ptrHead;
+	ListNode *cur = *ptrHead;
 
-    // base case: 마지막 노드면 반환
     if (cur == NULL || cur->next == NULL) {
         return;
     }
-    // 재귀 호출로 나머지 뒤집기
-    *ptrHead = cur->next;
-    RecursiveReverse(ptrHead);
-    // 역방향 연결
+    RecursiveReverse(&(cur->next));
     cur->next->next = cur;
-    cur->next = NULL;  // 새로운 끝을 NULL로
+    cur->next = NULL;
+    *ptrHead = cur->next;
 }
+
+// void RecursiveReverse(ListNode **ptrHead) {
+//     ListNode *cur = *ptrHead;
+//     if (cur == NULL || cur->next == NULL) {
+//         // 마지막 노드에서 head를 여기서 변경
+//         *ptrHead = cur;
+//         return;
+//     }
+//     RecursiveReverse(&(cur->next));
+//     cur->next->next = cur;
+//     cur->next = NULL;
+// }
 
 //////////////////////////////////////////////////////////////////////////////////
 
