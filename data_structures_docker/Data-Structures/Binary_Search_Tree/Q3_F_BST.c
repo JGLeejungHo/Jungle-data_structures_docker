@@ -89,10 +89,32 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void preOrderIterative(BSTNode *root)
+void preOrderIterative(BSTNode *root) // 스택으로 반복문을써서 스택으로 전위순회 만들기 추가 제거는push ,pop 사용
 {
-	 /* add your code here */
+    if (root == NULL) return;
+
+    Stack s;
+    s.top = NULL; //초기화
+
+    // 루트 노드부터 시작
+    push(&s, root);
+
+    while (!isEmpty(&s)) {
+        // 현재 노드 꺼내서 방문
+        BSTNode *node = pop(&s);
+        printf("%d ", node->item);
+
+        // 주의: 오른쪽을 먼저 push, 그 다음 왼쪽을 push
+        // 그래야 스택에서 왼쪽이 먼저 꺼내짐
+        if (node->right != NULL) {
+            push(&s, node->right);
+        }
+        if (node->left != NULL) {
+            push(&s, node->left);
+        }
+    }
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////
 

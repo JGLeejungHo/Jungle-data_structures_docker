@@ -97,12 +97,14 @@ int main()
 int maxHeight(BTNode *node)
 
 {
-    if (node==NULL){
-        return 0;
+    if (node == NULL){
+        return -1;
     }
-    int count;
-    
+    int left = maxHeight(node->left); // return left 값을 left에 저장
+    int right = maxHeight(node->right); // return right 값을 right에 저장
 
+    // ? 는 삼항 연산자 C,C++,Java 같은 언어에서 조건에 따라 값을 선택하는 연산자 사용법 (조건식 ? 값1(True): 값2(False))
+    return (left > right ? left : right) + 1; // left 가 right 보다 크다면 left 출력 아니라면 right 출력하고 +1 자신값 추가
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

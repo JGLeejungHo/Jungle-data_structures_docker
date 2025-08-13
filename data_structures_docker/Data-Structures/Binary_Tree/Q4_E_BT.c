@@ -100,10 +100,17 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-int sumOfOddNodes(BTNode *node)
-
+int sumOfOddNodes(BTNode *node) // 홀수만 더하기
 {
-    /* add your code here */
+    if (node == NULL){ // 비어있으면 리턴
+        return 0;
+    }
+    int count = 0; // 숫자
+    if (node->item % 2){ // 홀수라면
+        count = node->item; // 카운트 + node의 item 을 카운트에 저장
+    }
+
+    return count + sumOfOddNodes(node->left) + sumOfOddNodes(node->right); // 현재의 노드값 + 왼쪽노드+오른쪽 노드
 }
 
 //////////////////////////////////////////////////////////////////////////////////

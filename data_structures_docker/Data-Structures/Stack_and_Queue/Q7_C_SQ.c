@@ -105,30 +105,28 @@ int main()
 int balanced(char *expression)
 {
     Stack s;
-    s.ll.head = NULL;
+    s.ll.head = NULL; //스택초기화
     s.ll.size = 0;
 
-    for (int i = 0; expression[i] != '\0'; i++)
+    for (int i = 0; expression[i] != '\0'; i++) // 입력을 다받으면 종료 // while (expression++) 메모리 로 접근
     {
-        char ch = expression[i];
-        if (ch == '(' || ch == '[' || ch == '{')
+        char ch = expression[i]; // 문자 하나하나 저장
+        if (ch == '(' || ch == '[' || ch == '{') // 괄호의 앞부분이면
         {
-            push(&s, ch);
+            push(&s, ch); //s에 넣기
         }
-        else if (ch == ')' || ch == ']' || ch == '}')
+        else if (ch == ')' || ch == ']' || ch == '}') // 닫기라면
         {
-            if (isEmptyStack(&s)) return 1; // 불균형
+            if (isEmptyStack(&s)) return 1; // 비어있으면 불균형으로 리턴
 
-            char top = peek(&s);
-            if ((ch == ')' && top == '(') ||
-                (ch == ']' && top == '[') ||
-                (ch == '}' && top == '{'))
+            char top = peek(&s); // 비어 있지않으면 맨위에 값 반환
+            if ((ch == ')' && top == '(') ||  (ch == ']' && top == '[') || (ch == '}' && top == '{'))
             {
-                pop(&s);
+                pop(&s); //입력이 닫는거고 탑이 여는거면 팝
             }
             else
             {
-                return 1; // 짝 안 맞음
+                return 1; // 입력이 닫는게 아니고 탑도 여는게 아니라면 불균형
             }
         }
     }

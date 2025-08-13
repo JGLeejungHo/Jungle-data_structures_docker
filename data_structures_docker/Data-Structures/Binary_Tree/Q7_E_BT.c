@@ -102,7 +102,14 @@ int main()
 
 int smallestValue(BTNode *node)
 {
-	/* add your code here */
+	if(node == NULL){
+        return 2147483647; // int 최대값 2147483647 2^31-1 = 21억 4748만 3647
+    }
+    
+    int left = smallestValue(node->left); // 왼쪽노드값 왼쪽에 저장
+    int right = smallestValue(node->right); //오른쪽노드값 오른쪽에 저장
+
+    return left > right ? left : right; // 왼쪽이 작은게 맞다면 왼쪽출력 아니라면 오른쪽 출력
 }
 
 //////////////////////////////////////////////////////////////////////////////////

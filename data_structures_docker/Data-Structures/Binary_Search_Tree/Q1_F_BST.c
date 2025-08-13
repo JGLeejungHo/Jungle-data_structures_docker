@@ -91,10 +91,29 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void levelOrderTraversal(BSTNode* root)
+void levelOrderTraversal(BSTNode* root) // 큐 사용해서 레벨별로 순회하기 추가 제거는 enqueue 또는 dequeue 사용 큐 비우기
 {
+	if (root == NULL){ // 아무것도없으면 return
+		return;
+	}
 
-    /* add your code here */
+	QueueNode *head = NULL; //초기화
+	QueueNode *tail = NULL;
+
+	enqueue(&head, &tail, root); // 트리 탐색을 시작할때 루트노드를 큐에넣고 tail쪽에 새노드 추가;
+
+	while (!isEmpty(head)){ //큐에 노드가 남아있으면 반복
+		BSTNode *cur = dequeue(&head, &tail); // cur에다가 큐 맨앞 노드를 꺼내서 저장
+		printf("%d ", cur->item); // 저장한값 출력
+
+		if(cur->left != NULL){ // cur노드의 왼쪽에 자식이있으면 큐에넣기
+			enqueue(&head, &tail, cur->left);
+		}
+
+		if(cur->right != NULL){ // cur노드의 오른쪽에 자식이있으면 큐에넣기
+			enqueue(&head, &tail, cur->right);
+		}
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////

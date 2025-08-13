@@ -100,10 +100,21 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-int hasGreatGrandchild(BTNode *node)
-{
-	/* add your code here */
+int hasGreatGrandchild(BTNode *node) {
+    if (node == NULL) return -1; // 리프 노드: 깊이 -1
+
+    int leftDepth = hasGreatGrandchild(node->left); //왼쪽깊이 저장
+    int rightDepth = hasGreatGrandchild(node->right); // 오른쪽깊이 저장
+
+    int maxDepth = (leftDepth > rightDepth ? leftDepth : rightDepth) + 1; // 제일큰 깊이를 맥스깊이에 저장
+
+    if (maxDepth >= 3) { // 깊이가 3이상이면 증손주있음으니 출력
+        printf("%d\n", node->item);
+    }
+
+    return maxDepth; // 최대깊이 리턴
 }
+
 
 //////////////////////////////////////////////////////////////////////////////////
 

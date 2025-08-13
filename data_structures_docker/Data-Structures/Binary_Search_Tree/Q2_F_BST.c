@@ -88,9 +88,26 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void inOrderTraversal(BSTNode *root)
+void inOrderTraversal(BSTNode *root) // 스택으로 반복문을 사용하여 중위순회 만들기 추가 제거는 push 도는 pop사용 스택 비우기
 {
-	 /* add your code here */
+	Stack s;
+	s.top = NULL; // 초기화
+
+	// 노드순회하면서 stack 을 쌓을 cur
+	BSTNode *cur = root;
+
+	while (cur != NULL || !isEmpty(&s)){ // cur이 NULL이아니고 비있지않다면
+
+		while(cur != NULL){ // cur이 NULL이 아니라면
+			push(&s,cur);   // 스택에 cur 추가
+			cur = cur->left; // cur은 왼쪽으로
+		}
+		cur = pop(&s); // cur 이 NULL이 되서 나왔을때 문자 출력
+		printf("%d ", cur->item);
+
+		cur = cur->right; // 출력후 다시 오른쪽 순회
+	}
+	
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -113,9 +113,9 @@ void recursiveReverse(Queue *q)
 		return ;
 	}
 	int num;
-	num = dequeue(q);
-	recursiveReverse(q);
-	enqueue(q,num);
+	num = dequeue(q); // num에 q item 반환
+	recursiveReverse(q); //재귀
+	enqueue(q,num); // 다사ㅣ q에넣기
 }
 
 //////////////////////////////////////////////////////////////////

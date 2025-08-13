@@ -89,9 +89,35 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void postOrderIterativeS2(BSTNode *root)
+void postOrderIterativeS2(BSTNode *root) // 두개의 스택을 사용하여 후위순회 반복문사용 추가나 제거할때 push pop 연산만 사용
 {
-	 /* add your code here */
+    if (root == NULL) return;
+
+    Stack s1, s2;
+    s1.top = NULL;   // 반드시 초기화
+    s2.top = NULL;
+
+    push(&s1, root); // 현재위치 넣기
+
+    // s1에 넣은값이 빌때까지
+    while (!isEmpty(&s1)) {
+        BSTNode *node = pop(&s1); 
+        push(&s2, node); //s1에서 팝한걸 s2에 넣기
+
+        // 왼쪽 먼저 갔다가 오른쪽 으로 가기
+        if (node->left != NULL) {
+            push(&s1, node->left);
+        }
+        if (node->right != NULL) {
+            push(&s1, node->right);
+        }
+    }
+
+    // s2를 팝하며 출력하면 후위순회
+    while (!isEmpty(&s2)) {
+        BSTNode *node = pop(&s2);
+        printf("%d ", node->item);
+    }
 }
 
 /* Given a binary search tree and a key, this function

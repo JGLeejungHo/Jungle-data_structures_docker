@@ -89,11 +89,44 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void postOrderIterativeS1(BSTNode *root)
+void postOrderIterativeS1(BSTNode *root) //스택으로 반복문써서 후위순회 만들기 추가 제거 push pop 스택비우기
 {
-	 /* add your code here */
+    if (root == NULL) return;
+
+    Stack s;
+    s.top = NULL; //초기화
+
+	BSTNode *cur = root;
+	BSTNode *last = NULL;
+	
+	while (cur != NULL || !isEmpty(&s)){
+		// left로 계속 내려가며 푸시
+        if (cur != NULL) {
+            push(&s, cur->left);
+			cur = cur->left;
+        }
+		else{ 
+        	BSTNode *peekNode = peek(&s);
+			// 오른쪽 자식이 있고,아직방문하지않았다면 오른쪽으로 이동
+			if (peekNode->right != NULL && last != peekNode->right){
+				cur = peekNode->right;
+			}
+			else{
+				// 오른쪽도 없거나 이미 방문한 경우 루트 방문(출력)후 pop
+				printf("%d ", peekNode->item);
+				last=pop(&s); // pop은 스택 노드 메모리 해제하고 노드 포인터 반환
+			}
+		}
+	}
 }
 
+// void postOrderIterativeS1(BSTNode *root)
+// {
+//     if (root == NULL) return;
+//     postOrderIterativeS1(root->left);
+//     postOrderIterativeS1(root->right);
+//     print(root->item);
+// }
 ///////////////////////////////////////////////////////////////////////////////
 
 void insertBSTNode(BSTNode **node, int value){

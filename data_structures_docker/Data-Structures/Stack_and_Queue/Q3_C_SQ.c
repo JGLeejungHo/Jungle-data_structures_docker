@@ -106,22 +106,22 @@ int isStackPairwiseConsecutive(Stack *s)
 	if(s->ll.size%2){
 		return 0;
 	}
-	Stack stac;
-	stac.ll.head=NULL;
+	Stack stac; // 다른 스택 선언
+	stac.ll.head=NULL; // 초기화
 	stac.ll.size=0;
-	int right;
+	int right; // 맞는지 확인
 	while(!(isEmptyStack(s))){
-		int a1 = pop(s);
+		int a1 = pop(s); // 값넣기
 		int a2 = pop(s);
 
-		push(&stac,a2);
+		push(&stac,a2); // 되돌리기
 		push(&stac,a1);
 
-		if(abs (a2-a1) !=1){
+		if(abs (a2-a1) !=1){ // 1 또는 -1이 아닐경우 리턴
 			return 0;;
 		}
 	while(!(isEmptyStack(&stac))){
-		int item = pop(&stac);
+		int item = pop(&stac); // 값 s에 다시넣기
 		push(s,item);
 	}
 	return 1;

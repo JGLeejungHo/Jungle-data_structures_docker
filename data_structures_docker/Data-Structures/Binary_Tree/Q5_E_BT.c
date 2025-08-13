@@ -105,8 +105,43 @@ int main()
 
 void mirrorTree(BTNode *node)
 {
-	/* add your code here */
+    if (node == NULL) {
+    return; // 비어있으면 리턴
+    }
+    // 왼쪽과 오른쪽 자식 교환
+    BTNode *temp = node->left; //템프에 왼쪽 노드넣고
+    node->left = node->right; // 왼쪽에 오른쪽넣고
+    node->right = temp; //오른쪽에 템프넣기
+    
+    // 재귀적으로 처리
+    mirrorTree(node->left); //재귀로 왼쪽실행
+    mirrorTree(node->right); //재귀로 오른쪽 실행
 }
+
+// void mirrorTree(BTNode *node)
+// {
+//     if (node == NULL){ // 비어있으면 리턴
+//     return;
+//     }
+//     Stack s; //stack 초기화
+//     s.top = NULL;
+//     // 루트 노드부터 시작
+//     push(&s, node);
+//
+//     while (s.top != NULL) {
+//         BTNode *current = pop(&s);
+//         // 자식 노드 교환
+//         BTNode *temp = current->left;
+//         current->left = current->right;
+//         current->right = temp;
+//         // 자식이 있으면 스택에 추가
+//         if (current->left != NULL)
+//             push(&s, current->left);
+//         if (current->right != NULL)
+//             push(&s, current->right);
+//     }
+// }
+
 
 //////////////////////////////////////////////////////////////////////////////////
 

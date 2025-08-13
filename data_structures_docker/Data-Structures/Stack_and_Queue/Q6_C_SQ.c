@@ -116,12 +116,12 @@ void removeUntil(Stack *s, int value)
 	}
 	ListNode *cur;
 	cur = s->ll.head;
-	while(cur->next != NULL && cur != NULL){
+	while(cur != NULL){ //cur이 NULL이거나 NULL을만나면 종료
 		if(cur->next->item == value){
-			s->ll.head = cur->next;
+			s->ll.head = cur->next; //cur 이 우리가 찾던 value를 만나면 s의 헤드를 번경 // 헤드를 바꾸면 링크드 리스트랑 다를게없다.
 			return;
 		}
-		cur = cur->next;
+		cur = cur->next; // 찾던게 아니라면 다음으로
 	}
 }
 

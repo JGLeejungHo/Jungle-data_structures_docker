@@ -116,15 +116,14 @@ int main()
 int identical(BTNode *tree1, BTNode *tree2)
 
 {
-    if(tree1 == NULL && tree2 == NULL){
+    if(tree1 == NULL && tree2 == NULL){ //두개다 비어있으면 대칭
         return 1;
     }
-    else if(tree1 == NULL || tree2 == NULL){
+    else if(tree1 == NULL || tree2 == NULL){ // 하나만 비어있으면 비대칭
         return 0;
     }
-    else{
-        return (tree1->item == tree2->item) && identical(tree1->left,tree2->left) && identical(tree1->right,tree2->right);
-    }
+    return (tree1->item == tree2->item) && identical(tree1->left,tree2->left) && identical(tree1->right,tree2->right); 
+    // 트리1이랑 트리2 의 값이 같고 재귀로 트리1의 왼쪽 트리2왼쪽 과 트리1오른쪽 트리2오른쪽 비교 재귀부르면 맨밑에 비교하는것에서 1또는0리턴
 }
 
 /////////////////////////////////////////////////////////////////////////////////

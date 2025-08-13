@@ -113,19 +113,17 @@ int main()
 void reverse(Queue *q)
 {
 	Stack s;
-	s.ll.head = NULL;
+	s.ll.head = NULL; // 초기화
 	s.ll.size = 0;
 
-	while(!(isEmptyQueue(q))){
+	while(!(isEmptyQueue(q))){ // s에 넣기
 		int num = dequeue(q);
 		push(&s,num);
 	}
-	while(!(isEmptyStack(&s))){
+	while(!(isEmptyStack(&s))){ // q에넣기
 		int num = pop(&s);
 		enqueue(q,num);
 	}
-	// 스탯ㄱ 내부 노드 메모리 해제
-	removeAllItems(&(s.ll));
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
